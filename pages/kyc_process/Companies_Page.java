@@ -19,8 +19,8 @@ public class Companies_Page extends BasePage {
     private final By proofAddress_Number2 = By.xpath("//mat-expansion-panel[.//*[contains(normalize-space(),'Number 2_ Layer1')]]//p[normalize-space()='PROOF_OF_ADDRESS']/ancestor::section[contains(@class,'officers-container')]//div[contains(@class,'w-[15%]')]//button");
     private final By passport_Number2 = By.xpath("//mat-expansion-panel[.//*[contains(normalize-space(),'Number 2_ Layer1')]]//p[normalize-space()='PASSPORT']/ancestor::section[contains(@class,'officers-container')]//div[contains(@class,'w-[15%]')]//button");
     private final By director = By.xpath("//span[normalize-space()='Director:']");
-    private final By passport_Director = By.xpath("//mat-expansion-panel[.//*[contains(normalize-space(),' Nominee _ Long24442gmail.com ')]]//p[normalize-space()='PASSPORT']/ancestor::section[contains(@class,'officers-container')]//div[contains(@class,'w-[15%]')]//button");
-    private final By proofAddress_Director = By.xpath("//mat-expansion-panel[.//*[contains(normalize-space(),' Nominee _ Long24442gmail.com ')]]//p[normalize-space()='PROOF_OF_ADDRESS']/ancestor::section[contains(@class,'officers-container')]//div[contains(@class,'w-[15%]')]//button");
+    private final By passport_Director = By.xpath("//mat-expansion-panel[.//*[contains(normalize-space(),' Nominee _ Long17146gmail.com ')]]//p[normalize-space()='PASSPORT']/ancestor::section[contains(@class,'officers-container')]//div[contains(@class,'w-[15%]')]//button");
+    private final By proofAddress_Director = By.xpath("//mat-expansion-panel[.//*[contains(normalize-space(),' Nominee _ Long17146gmail.com ')]]//p[normalize-space()='PROOF_OF_ADDRESS']/ancestor::section[contains(@class,'officers-container')]//div[contains(@class,'w-[15%]')]//button");
     private final By status_Verifying = By.xpath("//span[normalize-space()='Verifying']");
     private final By confirmKYC_Button = By.xpath("//button[normalize-space()='upload_file Confirm KYC']");
     private final By sure_confirmKYC = By.xpath("//span[normalize-space()='Confirm']");

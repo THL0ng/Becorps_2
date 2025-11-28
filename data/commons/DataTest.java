@@ -14,6 +14,11 @@ public class DataTest {
 
     /// ////// Step 1 //////////
     public static String firstName = "Long" + getRandomNumber() + "gmail.com";
+
+
+
+
+
     public static String secondName = "Test" + getRandomNumber();
     public static String thirdName =  "Becorps" + getRandomNumber();
     public static String companyActivity =  "Test Automation";

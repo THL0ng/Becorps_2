@@ -13,8 +13,10 @@ public class Dashboard_Page extends BasePage {
 
 
     private final By kyc_Pending = By.xpath("//p[normalize-space()='KYC Pending']");
-    private final By selectProfile = By.xpath("//span[normalize-space(text())='Long24442gmail.com']");
-    //private final By selectProfile = By.xpath("//span[normalize-space(text())='" + name + "']");
+    //private final By selectProfile = By.xpath("//span[normalize-space(text())='Long24442gmail.com']");
+
+    private final By select_First_Profile = By.xpath("//td[contains(@class,'mat-column-name')]//span[contains(@class,'line-clamp-2')]");
+
 
 
     public void click_KYCPending(){
@@ -22,16 +24,10 @@ public class Dashboard_Page extends BasePage {
         click(kyc_Pending);
     }
 
-
-    public void click_Toprofile(){
-        waitClickable(selectProfile);
-        click(selectProfile);
+    public void click_ProfileJustCreated (){
+        waitClickable(select_First_Profile);
+        click(select_First_Profile);
     }
 
-
-    public void click_ToProfile(){
-        waitClickable(selectProfile);
-        click_RandomCompanyName(selectProfile);
-    }
 
 }
