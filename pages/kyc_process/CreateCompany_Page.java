@@ -133,13 +133,6 @@ public class CreateCompany_Page extends BasePage {
 
     }
 
-
-
-
-
-
-
-
     public void Checkstatus_ActiveAndConfirmed(){
         CreateCompany_Page create = new CreateCompany_Page(driver);
         //Map<String, String> status = create.KYC_Status(driver, "Long5711gmail.com");
