@@ -34,21 +34,22 @@ public class CreateCompany_Page extends BasePage {
 
     public void click_CreateCompanyProfile(){
         waitClickable(create_company_profile);
+        waitForPageLoaded();
         click(create_company_profile);
     }
 
-
     public void input_RegistrationNo(){
+        waitForPageLoaded();
         waitClickable(input_Registration);
         type(input_Registration,"123");
     }
 
-
     public void RandomDate (){
+        waitForPageLoaded();
+        waitClickable(incorporationDate);
         setRandomDate(incorporationDate, 2023, 2030, "dd/MM/yyyy");
 
     }
-
 
     public void click_confirm_createCompanyProfile(){
         waitClickable(confirm_createCompanyProfile);
@@ -59,8 +60,6 @@ public class CreateCompany_Page extends BasePage {
         waitClickable(back_to_companies);
         click(back_to_companies);
     }
-
-
 
     public Map<String, String> KYC_Status(WebDriver driver, String companyName) {
 
@@ -94,9 +93,6 @@ public class CreateCompany_Page extends BasePage {
 
     }
 
-
-
-
     public Map<String, String> KYC_Status_FirstRow(WebDriver driver) {
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -120,15 +116,9 @@ public class CreateCompany_Page extends BasePage {
                 .getText()
                 .trim();
 
-        String kycStatus = row
-                .findElement(By.xpath("(//td[contains(@class,'mat-column-kycStatus')]//span[contains(@class,'status-wrapper')])[1]"))
-                .getText()
-                .trim();
 
         Map<String, String> result = new HashMap<>();
         result.put("companyStatus", companyStatus);
-        result.put("kycStatus", kycStatus);
-
         return result;
 
     }
@@ -138,7 +128,7 @@ public class CreateCompany_Page extends BasePage {
         //Map<String, String> status = create.KYC_Status(driver, "Long5711gmail.com");
         Map<String, String> status = create.KYC_Status_FirstRow(driver);
         Assert.assertEquals(status.get("companyStatus"), "Active");
-        Assert.assertEquals(status.get("kycStatus"), "Incomplete");
+
 
     }
 

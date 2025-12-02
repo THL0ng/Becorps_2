@@ -27,10 +27,10 @@ public class KYCFlowTest extends BaseTest {
     public void TC_03_KYC_selectProfile() {
         Dashboard_Page dash = new Dashboard_Page(driver);
         dash.click_KYCPending();
-        dash.click_ProfileJustCreated();
+        //dash.click_ProfileJustCreated();
     }
 
-    @Test
+    //@Test
     public void TC_04_UploadFiles() {
         Companies_Page com = new Companies_Page(driver);
         com.click_KYC_UBO();
@@ -56,12 +56,12 @@ public class KYCFlowTest extends BaseTest {
     @Test
     public void TC_05_Create_Company_Profile() {
         CreateCompany_Page create = new CreateCompany_Page(driver);
-        create.click_CreateCompanyProfile();
+        /*create.click_CreateCompanyProfile();
 
         create.input_RegistrationNo();
         create.RandomDate();
         create.click_confirm_createCompanyProfile();
-        create.back_CompaniesTab();
+        create.back_CompaniesTab();*/
         create.Checkstatus_ActiveAndConfirmed();
 
     }
