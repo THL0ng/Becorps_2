@@ -80,13 +80,11 @@ public class CreateNewCompanyFlowTest extends BaseTest {
 
     }
 
-
     @Test
     public void TC_05_Review_Step3() {
         Review_Page review = new Review_Page(driver);
         review.click_ReviewNextButton();
     }
-
 
     @Test
     public void TC_06_Quote_Step4() {

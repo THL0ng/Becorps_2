@@ -15,6 +15,8 @@ public class BaseTest {
         options.addArguments("--disable-notifications");
         options.addArguments("--disable-popup-blocking");
         options.addArguments("--disable-geolocation");
+        options.addArguments("--disable-extensions");
+
 
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();

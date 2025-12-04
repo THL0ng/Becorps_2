@@ -33,8 +33,5 @@ public class Login_Page extends BasePage {
             click(loginButton);
         }
 
-
-
-
     }
 
