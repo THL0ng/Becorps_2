@@ -5,7 +5,6 @@ import commons.DataTest;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
 import java.util.List;
 import java.util.Random;
 
@@ -15,10 +14,6 @@ public class Transfer_Step1 extends BasePage {
     }
 
     private final By click_Dropdown = By.xpath("//mat-label[normalize-space()='Country of Incorporation']/ancestor::mat-form-field//div[contains(@class,'mat-select-trigger')]");
-    private final By select_Sing = By.xpath("//span[contains(normalize-space(),'Singapore')]");
-    private final By select_HongKong = By.xpath("//span[contains(normalize-space(),'Hong Kong')]");
-
-
     private final By companyName = By.xpath("//mat-label[text()='Company Name']/ancestor::mat-form-field//input");
     private final By registrationNumber = By.xpath("//mat-label[text()='Registration Number']/ancestor::mat-form-field//input");
     private final By incorporationDate = By.xpath("//input[@formcontrolname='registrationDate']");
@@ -28,12 +23,9 @@ public class Transfer_Step1 extends BasePage {
     private final By click_uploadFile = By.xpath("//ngx-dropzone-label[contains(@class,'dropzone-upload__label')]");
     private final By ourAddressSing = By.xpath("//mat-radio-button[.//span[normalize-space()='Singapore'] and .//p[contains(normalize-space(),'Use your own address')]]");
     private final By ourRegisteredAddress = By.xpath("//mat-radio-button[.//p[contains(normalize-space(),'Use our registered address')]]");
-    private final By countryValue = By.xpath("//mat-label[normalize-space()='Country of Incorporation']/ancestor::mat-form-field//span[contains(@class,'mat-select-value-text')]");
     private final By addressLine = By.xpath("//input[@formcontrolname='address']/ancestor::mat-form-field//input");
     private final By rentalForm = By.xpath("//ngx-dropzone-label[text()=' Upload rental agreement document']");
     private final By nextButton = By.xpath("//button[@type='submit']");
-
-
 
 
 
@@ -56,28 +48,6 @@ public class Transfer_Step1 extends BasePage {
             System.out.println("Random picked: NO");
         }
 
-    }
-
-    public void selectRandomAddress() {
-        Random random = new Random();
-        int pick = random.nextInt(2); // 0 or 1
-
-        if (pick == 0) {
-            driver.findElement(ourAddressSing).click();
-            System.out.println("Picked: Use own address");
-        } else {
-            driver.findElement(ourRegisteredAddress).click();
-            System.out.println("Picked: Use registered address");
-        }
-    }
-
-    public void handleAddressIfSingapore() {
-        String country = driver.findElement(countryValue).getText().trim();
-        if ("Singapore".equalsIgnoreCase(country)) {
-            selectRandomAddress();
-        } else {
-            System.out.println("Country is " + country + " → skip address selection");
-        }
     }
 
     public void handleSingaporeAddressSection() {
@@ -196,7 +166,6 @@ public class Transfer_Step1 extends BasePage {
         }
         return selectedCountry;
     }
-
 
 }
 

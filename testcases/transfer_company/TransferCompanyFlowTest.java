@@ -2,7 +2,6 @@ package transfer_company;
 
 import basetest.BaseTest;
 import create_new_company.Login_Page;
-import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
 
@@ -24,11 +23,25 @@ public class TransferCompanyFlowTest extends BaseTest {
         transferTab.clickToTranserCompanyTab();
     }
 
-
     @Test
     public void TC_03_Transfer_Step01() {
         Transfer_Step1 step1 = new Transfer_Step1(driver);
         step1.selectRandomCountry();
+    }
+
+    @Test
+    public void TC_04_Transfer_Step02() {
+        Transfer_Step2 step2 = new Transfer_Step2(driver);
+        step2.inputCapitalAmountForm();
+        step2.inputNumberOfSharesForm();
+        step2.clickDropDownList_shareCapital();
+
+
+
+
+
+
+
     }
 
 

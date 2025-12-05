@@ -9,8 +9,6 @@ import static commons.DataTest.email;
 import static commons.DataTest.numberOfShares;
 
 public class Capital_Page extends BasePage {
-
-
     public Capital_Page(WebDriver driver) {
         super(driver);
     }
@@ -55,19 +53,16 @@ public class Capital_Page extends BasePage {
 
     }
 
-
     public void inputNumberOfSharesForm(){
         waitVisible(numberOfsharesForm);
         type(numberOfsharesForm,(numberOfShares));
 
     }
 
-
     public void clickDropDownList_shareCapital (){
         selectDropdown(currency,currencyValue);
         selectDropdown(shareType,shareTypeValue);
     }
-
 
     public void clickShareholderButton(){
         waitVisible(addShareholderButton);
@@ -107,7 +102,6 @@ public class Capital_Page extends BasePage {
         type(emailForm, email);
 
     }
-
 
     public void clickDropdownList_nationality(){
         waitClickable(nationality);
@@ -154,15 +148,12 @@ public class Capital_Page extends BasePage {
         jsClick(shareTypeValue_shareDistribution);
     }
 
-
-
     public void clickDropDownlist_currency(){
         waitClickable(currency_shareDistribution);
         click(currency_shareDistribution);
         waitClickable(currencyValue_shareDistribution);
         click(currencyValue_shareDistribution);
     }
-
 
     public void inputnumberOfShare_Distribution(){
         waitClickable(numberOfShare_Distribution);
