@@ -34,53 +34,8 @@ public class Transfer_Step1 extends BasePage {
     private final By nextButton = By.xpath("//button[@type='submit']");
 
 
-    public void click_ToDropDownList() {
-        waitClickable(click_Dropdown);
-        click(click_Dropdown);
-    }
 
-    public void selectRandomOption(WebDriver driver) {
 
-        // Lấy tất cả option text trong dropdown
-        List<WebElement> options = driver.findElements(
-                By.xpath("//mat-option//span[contains(@class,'mat-option-text')]")
-        );
-
-        if (options.size() == 0) {
-            throw new RuntimeException("Dropdown không có option nào!");
-        }
-
-        // Random index
-        Random random = new Random();
-        int index = random.nextInt(options.size()); // từ 0 → size-1
-
-        WebElement chosen = options.get(index);
-
-        // Click option
-        chosen.click();
-
-        System.out.println("Selected option: " + chosen.getText().trim());
-    }
-
-    public void input_CompanyName() {
-        waitClickable(companyName);
-        type(companyName, DataTest.companyName);
-    }
-
-    public void input_registrationNumber() {
-        waitClickable(registrationNumber);
-        type(registrationNumber, String.valueOf(DataTest.registrationNumber));
-    }
-
-    public void RandomDate() {
-        setRandomDate(incorporationDate, 2023, 2030, "dd/MM/yyyy");
-
-    }
-
-    public void input_CompanyActivity() {
-        waitClickable(companyActivityForm);
-        type(companyActivityForm, "Ecommerce");
-    }
 
     public void selectRandomYesNo() {
         Random random = new Random();
@@ -138,7 +93,8 @@ public class Transfer_Step1 extends BasePage {
         } else {
             System.out.println("Picked: Use registered address → skipping fields");
             click(ourRegisteredAddress);
-            click(nextButton);
+            useOurRegisteredAddressDetails();
+
         }
 
     }
@@ -163,6 +119,19 @@ public class Transfer_Step1 extends BasePage {
         click(nextButton);
     }
 
+    public void useOurRegisteredAddressDetails() {
+
+        waitClickable(companyName);
+        type(companyName, DataTest.companyName);
+        waitClickable(registrationNumber);
+        type(registrationNumber, String.valueOf(DataTest.registrationNumber));
+        setRandomDate(incorporationDate, 2023, 2030, "dd/MM/yyyy");
+        waitClickable(companyActivityForm);
+        type(companyActivityForm, "Ecommerce");
+        selectRandomYesNo();
+        waitClickable(nextButton);
+        click(nextButton);
+    }
 
     public void fillAddressFormHK(){
         waitClickable(companyName);
@@ -180,10 +149,6 @@ public class Transfer_Step1 extends BasePage {
         click(rentalForm);
         uploadFileWithRobotBackup("01.png");
     }
-
-
-    /// /////////////////////////////////////////////////////////////
-
 
     public String selectRandomCountry() {
         waitClickable(click_Dropdown);
@@ -231,8 +196,6 @@ public class Transfer_Step1 extends BasePage {
         }
         return selectedCountry;
     }
-
-
 
 
 }
