@@ -28,16 +28,7 @@ public class TransferCompanyFlowTest extends BaseTest {
     @Test
     public void TC_03_Transfer_Step01() {
         Transfer_Step1 step1 = new Transfer_Step1(driver);
-
-        step1.click_ToDropDownList();
-        step1.selectRandomOption(driver);
-        step1.input_CompanyName();
-        step1.input_registrationNumber();
-        step1.RandomDate();
-        step1.input_CompanyActivity();
-        step1.selectRandomYesNo();
-
-
+        step1.selectRandomCountry();
     }
 
 

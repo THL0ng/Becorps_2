@@ -15,6 +15,10 @@ public class Transfer_Step1 extends BasePage {
     }
 
     private final By click_Dropdown = By.xpath("//mat-label[normalize-space()='Country of Incorporation']/ancestor::mat-form-field//div[contains(@class,'mat-select-trigger')]");
+    private final By select_Sing = By.xpath("//span[contains(normalize-space(),'Singapore')]");
+    private final By select_HongKong = By.xpath("//span[contains(normalize-space(),'Hong Kong')]");
+
+
     private final By companyName = By.xpath("//mat-label[text()='Company Name']/ancestor::mat-form-field//input");
     private final By registrationNumber = By.xpath("//mat-label[text()='Registration Number']/ancestor::mat-form-field//input");
     private final By incorporationDate = By.xpath("//input[@formcontrolname='registrationDate']");
@@ -22,10 +26,15 @@ public class Transfer_Step1 extends BasePage {
     private final By yesOption = By.xpath("//mat-radio-button[.//span[@class='mat-radio-label-content' and contains(normalize-space(),'Yes')]]");
     private final By noOption = By.xpath("//mat-radio-button[.//span[@class='mat-radio-label-content' and contains(normalize-space(),'No')]]");
     private final By click_uploadFile = By.xpath("//ngx-dropzone-label[contains(@class,'dropzone-upload__label')]");
+    private final By ourAddressSing = By.xpath("//mat-radio-button[.//span[normalize-space()='Singapore'] and .//p[contains(normalize-space(),'Use your own address')]]");
+    private final By ourRegisteredAddress = By.xpath("//mat-radio-button[.//p[contains(normalize-space(),'Use our registered address')]]");
+    private final By countryValue = By.xpath("//mat-label[normalize-space()='Country of Incorporation']/ancestor::mat-form-field//span[contains(@class,'mat-select-value-text')]");
+    private final By addressLine = By.xpath("//input[@formcontrolname='address']/ancestor::mat-form-field//input");
+    private final By rentalForm = By.xpath("//ngx-dropzone-label[text()=' Upload rental agreement document']");
+    private final By nextButton = By.xpath("//button[@type='submit']");
 
 
-
-    public void click_ToDropDownList(){
+    public void click_ToDropDownList() {
         waitClickable(click_Dropdown);
         click(click_Dropdown);
     }
@@ -53,26 +62,25 @@ public class Transfer_Step1 extends BasePage {
         System.out.println("Selected option: " + chosen.getText().trim());
     }
 
-    public void input_CompanyName(){
+    public void input_CompanyName() {
         waitClickable(companyName);
         type(companyName, DataTest.companyName);
     }
 
-    public void input_registrationNumber(){
+    public void input_registrationNumber() {
         waitClickable(registrationNumber);
         type(registrationNumber, String.valueOf(DataTest.registrationNumber));
     }
 
-    public void RandomDate (){
+    public void RandomDate() {
         setRandomDate(incorporationDate, 2023, 2030, "dd/MM/yyyy");
 
     }
 
-    public void input_CompanyActivity(){
+    public void input_CompanyActivity() {
         waitClickable(companyActivityForm);
         type(companyActivityForm, "Ecommerce");
     }
-
 
     public void selectRandomYesNo() {
         Random random = new Random();
@@ -95,9 +103,164 @@ public class Transfer_Step1 extends BasePage {
 
     }
 
+    public void selectRandomAddress() {
+        Random random = new Random();
+        int pick = random.nextInt(2); // 0 or 1
 
+        if (pick == 0) {
+            driver.findElement(ourAddressSing).click();
+            System.out.println("Picked: Use own address");
+        } else {
+            driver.findElement(ourRegisteredAddress).click();
+            System.out.println("Picked: Use registered address");
+        }
+    }
+
+    public void handleAddressIfSingapore() {
+        String country = driver.findElement(countryValue).getText().trim();
+        if ("Singapore".equalsIgnoreCase(country)) {
+            selectRandomAddress();
+        } else {
+            System.out.println("Country is " + country + " → skip address selection");
+        }
+    }
+
+    public void handleSingaporeAddressSection() {
+        Random random = new Random();
+        int pick = random.nextInt(2);   // 0 = own address, 1 = registered address
+
+        if (pick == 0) {
+            System.out.println("Picked: Use your own address → filling form");
+            click(ourAddressSing);
+            fillOwnAddressDetails();
+
+
+        } else {
+            System.out.println("Picked: Use registered address → skipping fields");
+            click(ourRegisteredAddress);
+            click(nextButton);
+        }
+
+    }
+
+    public void fillOwnAddressDetails() {
+
+        waitClickable(companyName);
+        type(companyName, DataTest.companyName);
+        waitClickable(registrationNumber);
+        type(registrationNumber, String.valueOf(DataTest.registrationNumber));
+        setRandomDate(incorporationDate, 2023, 2030, "dd/MM/yyyy");
+        waitClickable(companyActivityForm);
+        type(companyActivityForm, "Ecommerce");
+        selectRandomYesNo();
+
+        waitClickable(addressLine);
+        type(addressLine, "HCM City");
+        waitClickable(rentalForm);
+        click(rentalForm);
+        uploadFileWithRobotBackup("01.png");
+        waitClickable(nextButton);
+        click(nextButton);
+    }
+
+
+    public void fillAddressFormHK(){
+        waitClickable(companyName);
+        type(companyName, DataTest.companyName);
+        waitClickable(registrationNumber);
+        type(registrationNumber, String.valueOf(DataTest.registrationNumber));
+        setRandomDate(incorporationDate, 2023, 2030, "dd/MM/yyyy");
+        waitClickable(companyActivityForm);
+        type(companyActivityForm, "Ecommerce");
+        selectRandomYesNo();
+
+        waitClickable(addressLine);
+        type(addressLine,"Inazuma");
+        waitClickable(rentalForm);
+        click(rentalForm);
+        uploadFileWithRobotBackup("01.png");
+    }
+
+
+    /// /////////////////////////////////////////////////////////////
+
+
+    public String selectRandomCountry() {
+        waitClickable(click_Dropdown);
+        click(click_Dropdown);
+
+        List<WebElement> options = driver.findElements(
+                By.xpath("//mat-option//span[contains(@class,'mat-option-text')]")
+        );
+
+        if (options.size() == 0) {
+            throw new RuntimeException("Dropdown không có option nào!");
+        }
+
+        Random random = new Random();
+        int index = random.nextInt(options.size());
+
+        WebElement chosen = options.get(index);
+        chosen.click();
+
+        String country = chosen.getText().trim();
+        System.out.println("Selected option: " + country);
+
+        return handleAddressByCountry (country);
+    }
+
+    public String handleAddressByCountry(String selectedCountry) {
+
+        switch (selectedCountry.toLowerCase()) {
+
+            case "singapore":
+                System.out.println("→ Country = Singapore → apply Singapore logic");
+                handleSingaporeAddressSection();
+                break;
+
+            case "hong kong":
+                System.out.println("→ Country = Hong Kong → fill address normally");
+                fillAddressFormHK();
+                click(nextButton);
+                break;
+
+            default:
+                System.out.println("→ Unknown country → skip");
+                click(nextButton);
+                break;
+        }
+        return selectedCountry;
+    }
 
 
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
