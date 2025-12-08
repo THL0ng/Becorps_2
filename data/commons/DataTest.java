@@ -38,6 +38,10 @@ public class DataTest {
 
     public static String companyName = "Company" + getRandomNumber();
     public static int registrationNumber = getRandomNumber();
+    public static int transfer_CapitalAmount = getRandomNumber();
+    public static int transfer_NumberOfShares = getRandomNumber();
+    public static String transfer_FirstNameShareholder = "Individual";
+    public static String transfer_LastNameShareholder = "Test";
 
 
 
