@@ -1,5 +1,7 @@
 package commons;
 
+import org.testng.annotations.Test;
+
 import java.util.Random;
 
 public class DataTest {
@@ -42,6 +44,8 @@ public class DataTest {
     public static int transfer_NumberOfShares = getRandomNumber();
     public static String transfer_FirstNameShareholder = "Individual";
     public static String transfer_LastNameShareholder = "Test";
+
+
 
 
 

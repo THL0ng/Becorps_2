@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Random;
 
 import static commons.DataTest.email;
+import static commons.DataTest.getRandomNumber;
 
 public class Transfer_Step2 extends BasePage {
     public Transfer_Step2(WebDriver driver) {
@@ -39,10 +40,16 @@ public class Transfer_Step2 extends BasePage {
 
 
 
+    private final By numberOfShare_Distribution = By.xpath("//input[@formcontrolname='numberOfShares']");
+    private final By numberOfShare_Distribution_02 = By.xpath("//input[@formcontrolname='numberOfShares']");
+    private final By saveButton_Distribution = By.xpath("//span[normalize-space()='Save']");
+    private final By addNomineeDirector = By.xpath("//span[contains(normalize-space(),'Add Nominee Director')]");
+    private final By nextbutton = By.xpath("(//button[contains(@class,'mat-stepper-next') and contains(@class,'bg-primary-900')])[2]");
 
 
-
-
+    private int totalValue_NumberOfShares;
+    private int number01_ValueNumber;
+    private int number02_ValueNumber;
 
 
 
@@ -298,6 +305,35 @@ public class Transfer_Step2 extends BasePage {
         chosen.click();
 
         return shareType_Shareholder;
+    }
+
+    public void handleShareDistributionFlow() {
+        // 1. Random tổng số shares
+        totalValue_NumberOfShares = getRandomNumber();
+        System.out.println("Total shares: " + totalValue_NumberOfShares);
+
+        // 2. Chia cho 2 user
+        Random rand = new Random();
+        int user1 = rand.nextInt(totalValue_NumberOfShares + 1);  // 0 -> total
+        int user2 = totalValue_NumberOfShares - user1;
+
+        number01_ValueNumber = user1;
+        number02_ValueNumber = user2;
+
+        System.out.println("User1 shares: " + number01_ValueNumber
+                + " | User2 shares: " + number02_ValueNumber);
+
+        // 3. --- PAGE A: nhập cho user1 ---
+        waitClickable(numberOfShare_Distribution);
+        type(numberOfShare_Distribution, String.valueOf(number01_ValueNumber));
+
+        // 4. --- PAGE B: nhập cho user2 ---
+        waitClickable(numberOfShare_Distribution_02);
+        type(numberOfShare_Distribution_02, String.valueOf(number02_ValueNumber));
+
+        // 5. Click Save
+        waitClickable(saveButton_Distribution);
+        click(saveButton_Distribution);
     }
 
 

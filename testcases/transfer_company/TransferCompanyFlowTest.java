@@ -51,6 +51,30 @@ public class TransferCompanyFlowTest extends BaseTest {
         step2.selectRandomShareType_Shareholder();
         step2.selectRandomCurency_Shareholder();
 
+        step2.handleShareDistributionFlow();
+
+
+
+        step2.clickShareholderButton();
+        step2.selectRandomGender();
+        step2.inputTransfer_FirstNameShareholder();
+        step2.inputTransfer_LastNameShareholder();
+        step2.selectRandomIden();
+        step2.inputidentificationForm();
+        step2.selectRandomNationality();
+        step2.RandomDate();
+        step2.inputEmailForm();
+        step2.inputAddressForm();
+        step2.inputnumberPhone();
+        step2.selectRandomCountry();
+        step2.click_shareDistributionButton();
+        step2.selectRandomShareType_Shareholder();
+        step2.selectRandomCurency_Shareholder();
+
+        step2.handleShareDistributionFlow();
+
+
+
 
 
 
