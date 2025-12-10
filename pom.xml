@@ -13,7 +13,7 @@
     <name>Becorps Automation</name>
 
     <properties>
-        <maven.compiler.source>21</maven.compiler.source>   <!-- hoặc 17 nếu em dùng JDK 17 -->
+        <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
@@ -34,24 +34,30 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- WebDriverManager: tự download ChromeDriver, GeckoDriver, ... -->
+        <!-- WebDriverManager -->
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
             <version>5.9.2</version>
         </dependency>
+
+        <!-- Sentry Java SDK -->
+        <dependency>
+            <groupId>io.sentry</groupId>
+            <artifactId>sentry</artifactId>
+            <version>7.18.0</version>
+        </dependency>
     </dependencies>
 
     <build>
         <plugins>
-            <!-- Plugin để chạy TestNG với mvn test -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.2.5</version>
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>src/resources/testng.xml</suiteXmlFile>
+                        <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
             </plugin>
