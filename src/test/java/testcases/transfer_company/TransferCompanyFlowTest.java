@@ -76,11 +76,6 @@ public class TransferCompanyFlowTest extends BaseTest {
         step2.handleShareDistributionFlow();
 
 
-
-
-
-
-
     }
 
 

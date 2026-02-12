@@ -19,7 +19,7 @@ public class CreateNewCompanyFlowTest extends BaseTest {
         registertab.clickToRegisterCompanyTab();
     }
 
-    //@Test
+    @Test
     public void TC_03_CompanyDetail_Step1() {
         CompanyDetail_Page step_1 = new CompanyDetail_Page(driver);
         step_1.inputFirstName();
@@ -33,7 +33,7 @@ public class CreateNewCompanyFlowTest extends BaseTest {
 
     }
 
-    //@Test
+    @Test
     public void TC_04_Capital_Step2() {
         Capital_Page step2 = new Capital_Page(driver);
         step2.inputCapitalAmountForm();
@@ -81,20 +81,20 @@ public class CreateNewCompanyFlowTest extends BaseTest {
 
     }
 
-    //@Test
+    @Test
     public void TC_05_Review_Step3() {
         Review_Page review = new Review_Page(driver);
         review.click_ReviewNextButton();
     }
 
-    //@Test
+    @Test
     public void TC_06_Quote_Step4() {
         Quote_Page quote = new Quote_Page(driver);
-        //quote.click_Checkbox();
+        quote.click_Checkbox();
         quote.click_RequestButton();
     }
 
-    //@Test
+    @Test
     public void TC_07_Verify_SuperAdmin_Assign_Expert() {
         Main_Request_Page main = new Main_Request_Page(driver);
         main.verifyText();
