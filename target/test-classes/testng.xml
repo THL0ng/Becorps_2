@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Becorps Suite" verbose="1">
+
+    <listeners>
+        <!-- Inner class TestListener trong BaseTest -->
+        <listener class-name="bases.basetest.BaseTest$TestListener"/>
+    </listeners>
+
+    <test name="Transfer Company Tests">
+        <classes>
+            <class name="testcases.create_new_company.CreateNewCompanyFlowTest"/>
+        </classes>
+    </test>
+
+</suite>
